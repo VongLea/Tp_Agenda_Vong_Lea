@@ -62,10 +62,10 @@ public class Agenda {
      */
     public boolean isFreeFor(Event e) {
         for (Event event : listEvents) {
-            if (!e.getStart().equals(event.getStart()) && !e.getDuration().equals(event.getDuration())) {
-                return false;
+            if (e.getStart().isBefore(event.getStart()) || e.getStart().isAfter(event.getStart().plus(event.getDuration()))) {
+                return true;
             }
         }
-        return true;        
+        return false;        
     }
 }
